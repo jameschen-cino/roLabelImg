@@ -1157,7 +1157,14 @@ class MainWindow(QMainWindow, WindowMixin):
             self.loadFile(filename)
 
     def saveFile(self, _value=False):
-        if self.defaultSaveDir is not None and len(ustr(self.defaultSaveDir)):
+        if True:
+            if self.filePath:
+                imgFileName = os.path.basename(self.filePath)
+                imgFilePath = os.path.dirname(self.filePath)
+                savedFileName = os.path.splitext(imgFileName)[0] + XML_EXT
+                savedPath = os.path.join(imgFilePath, savedFileName)
+                self._saveFile(savedPath)
+        elif self.defaultSaveDir is not None and len(ustr(self.defaultSaveDir)):
             if self.filePath:
                 imgFileName = os.path.basename(self.filePath)
                 savedFileName = os.path.splitext(imgFileName)[0] + XML_EXT
